@@ -16,6 +16,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # doesn't already exist on the user's system.
   config.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130427.box"
 
+  config.vm.hostname = "davidfergonhost"
+
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
@@ -95,6 +97,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # provision the stack
   config.vm.provision :puppet do |puppet|
+
+    # change fqdn to give to change the vm virtual host
+    puppet.facter = { 
+      "fqdn" => config.vm.hostname
+    }
 
     # set the puppet manifests directory (relative to the project's root)
     puppet.manifests_path = "manifests"
