@@ -1,0 +1,1 @@
+A very simple Vagrant and Puppet sample to install Java, configure it, and install an amplía))) RPM file.
